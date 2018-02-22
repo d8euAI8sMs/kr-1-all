@@ -60,5 +60,8 @@ print_all_by_price_range(Min, Max) :- list_all_by_price_range(Min, Max, Books), 
 /* ********************* manual-coded approach ********************* */
 
 mprint_all :- print_head, book(B), print_row(B), nl, fail.
+mprint_all.
 mprint_all_by_name(Name) :- print_head, query_by_name(Name, B), print_row(B), nl, fail.
+mprint_all_by_name(_).
 mprint_all_by_price_range(Min, Max) :- print_head, query_by_price_range(Min, Max, B), print_row(B), nl, fail.
+mprint_all_by_price_range(_, _).
