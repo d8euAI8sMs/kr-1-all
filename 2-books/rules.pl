@@ -13,8 +13,8 @@
  *     ~tX, X~t, ~tX~t -- left, right, center alignment of X
  */
 
-table_rule("|~45t~59||~45t~6+|~45t~6+|").
-table_column_format("|~w~59||~t~w~6+|~t~w~6+|").
+table_rule("~0||~45t~59||~45t~6+|~45t~6+|").
+table_column_format("~0||~w~59||~t~w~6+|~t~w~6+|").
 table_column_headers(("Name", "Price", "Count")).
 
 print_row((N, P, C)) :- table_column_format(F),
