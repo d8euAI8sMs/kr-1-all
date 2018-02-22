@@ -16,6 +16,10 @@ A number of separate files written in Prolog (SWI-Prolog).
 
 A database of an abstract family tree.
 
+### #2 - Book Store
+
+A database for a book shop with a number of querying operations over it.
+
 ## Getting Source Code
 
 Use the following command to clone this repository:
