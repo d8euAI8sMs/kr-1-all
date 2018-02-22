@@ -65,3 +65,57 @@ mprint_all_by_name(Name) :- print_head, query_by_name(Name, B), print_row(B), nl
 mprint_all_by_name(_).
 mprint_all_by_price_range(Min, Max) :- print_head, query_by_price_range(Min, Max, B), print_row(B), nl, fail.
 mprint_all_by_price_range(_, _).
+
+
+
+/* *********************** user interaction ************************* */
+
+ui_get_input(Prompt, String) :- prompt1(Prompt), read(String).
+
+ui_check_bool(true, Bool) :- Bool = true.
+ui_check_bool(_, Bool) :- Bool = false.
+
+ui_ask_write_to_file(Bool) :-
+    ui_get_input("Write to file (true, false)? ", T),
+    ui_check_bool(T, Bool).
+
+ui_do_if(true, What, PostActionOnSuccess, _) :- What, PostActionOnSuccess.
+ui_do_if(false, _, _, PostActionOnFailure) :- PostActionOnFailure.
+
+ui_do_and_check_write_to_file(What, File) :-
+    What,
+    ui_ask_write_to_file(B),
+    ui_do_if(B, with_output_to(File, What),
+                write("[info] The data was successfully stored."),
+                write("[info] The data was not stored.")).
+
+ui_open_file(File) :- open("output.txt", write, File).
+ui_do_while_open(File, What) :- ui_open_file(File), What, close(File).
+
+ui_do_and_check_write_to_file(What) :-
+    ui_do_while_open(F, ui_do_and_check_write_to_file(What, F)).
+
+ui_print_all :-
+    ui_do_and_check_write_to_file(mprint_all).
+ui_print_all_by_name :-
+    ui_get_input("Name: ", N),
+    ui_do_and_check_write_to_file(mprint_all_by_name(N)).
+ui_print_all_by_price_range :-
+    ui_get_input("Price Range (Min, Max): ", (Min, Max)),
+    ui_do_and_check_write_to_file(mprint_all_by_price_range(Min, Max)).
+
+ui_main :-
+    prompt1("Please, enter command ('help' for help): "),
+    read(C),
+    ui_command(C).
+
+ui_command(help) :-
+    write("=== Book Store CLI Application Help ==="), nl,
+    write("type 'help'  to read this help again"), nl,
+    write("type 'all'   to list all available books"), nl,
+    write("type 'name'  to filter available books by the given name"), nl,
+    write("type 'price' to filter the books by the given price range"), nl.
+
+ui_command(all) :- ui_print_all.
+ui_command(name) :- ui_print_all_by_name.
+ui_command(price) :- ui_print_all_by_price_range.
