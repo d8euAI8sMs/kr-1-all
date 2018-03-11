@@ -20,6 +20,10 @@ A database of an abstract family tree.
 
 A database for a book shop with a number of querying operations over it.
 
+### #3 - Recursion
+
+A number of examples of recursive rules (fibonacci, multiplication, etc.).
+
 ## Getting Source Code
 
 Use the following command to clone this repository:
