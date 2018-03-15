@@ -24,6 +24,10 @@ A database for a book shop with a number of querying operations over it.
 
 A number of examples of recursive rules (fibonacci, multiplication, etc.).
 
+### #4 - Lists
+
+Some examples of how to process lists (sum, max, etc.).
+
 ## Getting Source Code
 
 Use the following command to clone this repository:
