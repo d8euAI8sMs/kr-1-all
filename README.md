@@ -28,6 +28,10 @@ A number of examples of recursive rules (fibonacci, multiplication, etc.).
 
 Some examples of how to process lists (sum, max, etc.).
 
+### #5 - Logic
+
+A number of solutions to logical problems (e.g. Einstein's Riddle).
+
 ## Getting Source Code
 
 Use the following command to clone this repository:
